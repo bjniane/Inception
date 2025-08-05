@@ -1,0 +1,91 @@
+services:
+  nginx:
+    build:
+      context: ./requirements/nginx
+      dockerfile: Dockerfile
+    container_name: nginx
+    restart: always
+    depends_on:
+      - wordpress
+    ports:
+      - "443:443"
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - web-net
+
+  wordpress:
+    build:
+      context: ./requirements/wordpress
+      dockerfile: Dockerfile
+    container_name: wordpress
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+    environment:
+      WORDPRESS_DB_HOST: ${WP_HOST}
+      WORDPRESS_DB_USER: ${WP_USER}
+      WORDPRESS_DB_PASSWORD: ${WP_PASSWD}
+      WORDPRESS_DB_NAME: ${WP_NAME}
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - web-net
+
+  db:
+    build:
+      context: ./requirements/mariadb
+      dockerfile: Dockerfile
+    container_name: mariaDB
+    restart: always
+    env_file:
+      - .env
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWD}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - web-net
+  
+  redis:
+    build:
+      context: ./requirements/bonus/redis_cache
+      dockerfile: Dockerfile
+    container_name: redis
+    restart: always
+    volumes:
+      - redis_data:/data
+    networks:
+      - web-net
+    
+
+volumes:
+  db_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/${USER_ID}/data/mariadb
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/${USER_ID}/data/wordpress
+  redis_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/${USER_ID}/data/redis
+
+networks:
+  web-net:
+    driver: bridge
+    name: TOROKARO
