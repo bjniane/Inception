@@ -63,6 +63,25 @@ services:
       - redis_data:/data
     networks:
       - web-net
+
+  ftp-server:
+    build:
+      context: ./requirements/bonus/ftp-server
+      dockerfile: Dockerfile
+    container_name: ftp-server
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - web-net
+    ports:
+      - "21:21"
+    environment:
+      FTP_USER_NAME: ${FTP_USER_NAME}
+      FTP_USER_PASSWD: ${FTP_USER_PASSWD}
+      FTP_USER_HOME: ${FTP_USER_HOME}
     
 
 volumes:

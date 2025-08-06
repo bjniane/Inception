@@ -30,7 +30,7 @@ wp user create --allow-root \
     --user_pass="${WP_PASSWD2}" \
     --role=author
 
-echo -e "\nInstallin redis plugin..."
+echo -e "\nInstalling redis plugin..."
 wp plugin install redis-cache --activate --allow-root
 
 echo -e "\nsetting up redis cache configuration..."
