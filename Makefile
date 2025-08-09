@@ -11,6 +11,7 @@ setup:
 	@sudo mkdir -p $(DATA_PATH)/mariadb
 	@sudo mkdir -p $(DATA_PATH)/wordpress
 	@sudo mkdir -p $(DATA_PATH)/redis
+	@sudo mkdir -p $(DATA_PATH)/portainer
 
 build: setup
 	@echo "building services..."
@@ -49,6 +50,7 @@ fclean: clean
 	@sudo rm -rf $(DATA_PATH)/mariadb
 	@sudo rm -rf $(DATA_PATH)/wordpress
 	@sudo rm -rf $(DATA_PATH)/redis
+	@sudo rm -rf $(DATA_PATH)/portainer
 
 flush:
 	@echo "Flushing redis cache..."
