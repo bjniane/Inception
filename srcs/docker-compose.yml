@@ -90,13 +90,25 @@ services:
       dockerfile: Dockerfile
     container_name: adminer
     restart: always
+    ports:
+      - "8000:8000"
     depends_on:
       - db
-    volumes:
-      - wordpress_data:/var/www/html
     networks:
       - web-net
     
+  portainer:
+    image: portainer/portainer-ce
+    container_name: portainer
+    restart: always
+    ports:
+      - "9000:9000"
+      - "8001:8000"
+    volumes:
+      - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - web-net
 
 volumes:
   db_data:
@@ -117,6 +129,12 @@ volumes:
       type: none
       o: bind
       device: /home/${USER_ID}/data/redis
+  portainer_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/${USER_ID}/data/portainer
 
 networks:
   web-net:
