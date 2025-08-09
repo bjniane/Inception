@@ -83,6 +83,19 @@ services:
       FTP_USER_NAME: ${FTP_USER_NAME}
       FTP_USER_PASSWD: ${FTP_USER_PASSWD}
       FTP_USER_HOME: ${FTP_USER_HOME}
+  
+  adminer:
+    build:
+      context: ./requirements/bonus/adminer
+      dockerfile: Dockerfile
+    container_name: adminer
+    restart: always
+    depends_on:
+      - db
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - web-net
     
 
 volumes:
