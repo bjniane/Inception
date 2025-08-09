@@ -50,6 +50,11 @@ fclean: clean
 	@sudo rm -rf $(DATA_PATH)/wordpress
 	@sudo rm -rf $(DATA_PATH)/redis
 
+flush:
+	@echo "Flushing redis cache..."
+	@docker exec -it redis redis-cli FLUSHDB
+	@echo "Redis cache flushed!"
+
 re: fclean all
 
-.PHONY: all up down build ps clean fclean re setup stop start restart
+.PHONY: all up down build ps clean fclean re setup stop start restart flush
