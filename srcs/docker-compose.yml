@@ -98,12 +98,13 @@ services:
       - web-net
     
   portainer:
-    image: portainer/portainer-ce
+    build:
+      context: ./requirements/bonus/portainer
+      dockerfile: Dockerfile
     container_name: portainer
     restart: always
     ports:
       - "9000:9000"
-      - "8001:8000"
     volumes:
       - portainer_data:/data
       - /var/run/docker.sock:/var/run/docker.sock
