@@ -111,6 +111,17 @@ services:
     networks:
       - web-net
 
+  static:
+    build:
+      context: ./requirements/bonus/static
+      dockerfile: Dockerfile
+    container_name: static
+    restart: always
+    ports:
+      - "8080:80"
+    networks:
+      - web-net
+
 volumes:
   db_data:
     driver: local
