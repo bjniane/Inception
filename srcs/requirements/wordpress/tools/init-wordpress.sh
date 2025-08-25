@@ -47,4 +47,4 @@ echo -e "\ntesting redis cache..."
 wp cache set "test_key" "Hello from Redis!" --allow-root
 wp cache get "test_key" --allow-root
 
-exec php-fpm7.4 -F -R
+exec php-fpm7.4 -F
