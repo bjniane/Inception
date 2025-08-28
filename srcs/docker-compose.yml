@@ -27,6 +27,9 @@ services:
     depends_on:
       - db
       - redis
+    secrets:
+      - db_password
+      - wp_user2_password
     volumes:
       - wordpress_data:/var/www/html
     networks:
@@ -42,7 +45,10 @@ services:
     env_file:
       - .env
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWD}
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+    secrets:
+      - db_root_password
+      - db_password
     volumes:
       - db_data:/var/lib/mysql
     networks:
@@ -69,6 +75,8 @@ services:
     restart: always
     env_file:
       - .env
+    secrets:
+      - ftp_password
     volumes:
       - wordpress_data:/var/www/html
     networks:
@@ -76,10 +84,6 @@ services:
     ports:
       - "21:21"
       - "30000-30009:30000-30009"
-    environment:
-      FTP_USER_NAME: ${FTP_USER_NAME}
-      FTP_USER_PASSWD: ${FTP_USER_PASSWD}
-      FTP_USER_HOME: ${FTP_USER_HOME}
   
   adminer:
     build:
@@ -121,6 +125,16 @@ services:
       - "8080:80"
     networks:
       - web-net
+
+secrets:
+  db_root_password:
+    file: ./../secrets/db_root_password.txt
+  db_password:
+    file: ./../secrets/db_password.txt
+  wp_user2_password:
+    file: ./../secrets/wp_user2_password.txt
+  ftp_password:
+    file: ./../secrets/ftp_password.txt
 
 volumes:
   db_data:

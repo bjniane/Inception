@@ -1,5 +1,7 @@
 #!/bin/sh
 
+DB_PASSWD=$(cat /run/secrets/db_password)
+
 if [ ! -d "/var/lib/mysql/mysql" ]; then
     echo "Initializing MariaDB data directory..."
     mysql_install_db --user=mysql --datadir=/var/lib/mysql

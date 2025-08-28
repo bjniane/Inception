@@ -3,6 +3,9 @@ echo -e "\n====================================================="
 echo -e "\n=============== Setting up WordPress ================"
 echo -e "\n====================================================="
 
+WP_PASSWD=$(cat /run/secrets/db_password)
+WP_PASSWD2=$(cat /run/secrets/wp_user2_password)
+
 cd /var/www/html
 
 echo -e "\nDownloading WordPress..."
