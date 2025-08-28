@@ -4,6 +4,8 @@ echo -e "\n====================================================="
 echo -e "\n================ Setting up FTP Server =============="
 echo -e "\n====================================================="
 
+FTP_USER_PASSWD=$(cat /run/secrest/ftp_password)
+
 adduser --disabled-password --gecos "" --home /var/www/html "${FTP_USER_NAME}"
 
 echo "${FTP_USER_NAME}:${FTP_USER_PASSWD}" | chpasswd
