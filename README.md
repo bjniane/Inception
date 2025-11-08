@@ -14,37 +14,6 @@ Inception is a System Administration project that focuses on Docker containeriza
 - No ssh usage inside containers
 - No password authentication for database
 
-## ⚡ Quick Start
-
-1. Clone the repository:
-```bash
-git clone https://github.com/bjniane/Inception.git
-cd Inception
-```
-
-2. Set up environment variables:
-```bash
-# Create .env file in srcs directory
-cp srcs/.env.example srcs/.env
-# Edit the .env file with your configurations
-```
-
-3. Build and start services:
-```bash
-make up
-```
-
-4. Access services:
-- WordPress: https://localhost
-- Adminer: https://localhost:8080
-- Static Website: https://localhost:8081
-- Portainer: https://localhost:9443
-
-5. Stop services:
-```bash
-make down
-```
-
 ## 🏗 Project Architecture
 
 ### Core Infrastructure
@@ -197,11 +166,6 @@ git clone https://github.com/yourusername/Inception.git
 cd Inception
 ```
 
-2. Create necessary directories:
-```bash
-make prepare
-```
-
 3. Start the services:
 ```bash
 make up
@@ -222,28 +186,6 @@ make clean
 ### SSL Certificate
 - Self-signed SSL certificate is automatically generated
 - Accessible via HTTPS on port 443
-
-### Service Details
-
-#### WordPress
-- URL: https://localhost
-- Admin panel: https://localhost/wp-admin
-
-#### Adminer
-- URL: https://localhost:8080
-
-#### Static Website
-- URL: https://localhost:8081
-
-#### FTP Server
-- Port: 21
-- Mode: Passive
-
-#### Portainer
-- URL: https://localhost:9443
-
-#### Redis Cache
-- Integrated with WordPress for improved performance
 
 ## 📁 Project Structure
 
