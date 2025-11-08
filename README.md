@@ -12,35 +12,7 @@ Inception is a System Administration project that focuses on Docker containeriza
 - TLS v1.2 or v1.3 for HTTPS connections
 - No usage of network: "host" or --link or links:
 - No ssh usage inside containers
-- No password authentication for database
-
-## 🏗 Project Architecture
-
-### Core Infrastructure
-```mermaid
-graph TB
-    subgraph Docker Infrastructure
-        subgraph Volumes
-            wp_vol[WordPress Files]
-            db_vol[Database Data]
-        end
-        
-        subgraph Containers
-            nginx[NGINX<br/>:443]
-            wp[WordPress + PHP-FPM<br/>:9000]
-            db[MariaDB<br/>:3306]
-        end
-        
-        subgraph Network
-            nginx --> |HTTPS| wp
-            wp --> |TCP| db
-            wp --- wp_vol
-            db --- db_vol
-        end
-    end
-    
-    User[Client] --> |HTTPS:443| nginx
-```
+- No password authentication for database`
 
 ### Core Services
 1. **NGINX Container**
@@ -57,29 +29,6 @@ graph TB
    - Secure database configuration
    - Custom MySQL settings
    - Data persistence
-
-## 🎁 Bonus Services
-
-### Additional Infrastructure
-```mermaid
-graph TB
-    subgraph Bonus Services
-        redis[Redis Cache]
-        ftp[FTP Server<br/>:21]
-        adminer[Adminer<br/>:8080]
-        static[Static Website<br/>:8081]
-        portainer[Portainer<br/>:9443]
-    end
-    
-    subgraph Core Services
-        wp[WordPress]
-        db[MariaDB]
-    end
-    
-    wp --> redis
-    adminer --> db
-    ftp --> wp
-```
 
 ## 🌐 Network Architecture
 
