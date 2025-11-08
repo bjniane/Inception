@@ -235,10 +235,30 @@ FTP_PASS=your_ftp_password
 - Services auto-restart in case of failure
 - SSL/TLS encryption is enabled for secure communication
 
-## 🤝 Contributing
+## � Further Resources
 
-Feel free to submit issues and pull requests.
+### Official Documentation
+- [Docker Installation Guide](https://docs.docker.com/get-docker/)
+- [Docker Compose Documentation](https://docs.docker.com/compose/)
+- [WordPress Setup Guide](https://wordpress.org/documentation/article/how-to-install-wordpress/)
+- [NGINX Documentation](https://nginx.org/en/docs/)
+- [MariaDB Documentation](https://mariadb.org/documentation/)
 
-## 📜 License
+### Container Services
+- [PHP-FPM Configuration](https://www.php.net/manual/en/install.fpm.configuration.php)
+- [Redis Cache for WordPress](https://redis.io/docs/manual/security/)
+- [Portainer Documentation](https://docs.portainer.io/)
+- [Adminer Documentation](https://www.adminer.org/en/documentation/)
+- [vsftpd Configuration](https://security.appspot.com/vsftpd.html)
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+### Security Resources
+- [Docker Security Best Practices](https://docs.docker.com/develop/security-best-practices/)
+- [NGINX SSL Configuration](https://nginx.org/en/docs/http/configuring_https_servers.html)
+- [WordPress Security Guide](https://wordpress.org/documentation/article/hardening-wordpress/)
+- [MariaDB Security Guide](https://mariadb.com/kb/en/security/)
+
+### Tutorials and Guides
+- [Docker Networking Guide](https://docs.docker.com/network/)
+- [Docker Volume Management](https://docs.docker.com/storage/volumes/)
+- [WordPress with NGINX](https://www.nginx.com/resources/wiki/start/topics/recipes/wordpress/)
+- [Redis Cache Setup for WordPress](https://redis.io/docs/manual/config/)
